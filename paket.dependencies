@@ -1,0 +1,13 @@
+source https://nuget.org/api/v2
+nuget FSharp.Compiler
+nuget FSharp.Compiler.Service
+nuget FSharp.Core
+nuget Microsoft.Owin.FileSystems
+nuget Microsoft.Owin.Host.HttpListener
+nuget Microsoft.Owin.Hosting
+nuget Microsoft.Owin.StaticFiles
+nuget Owin
+nuget WebSharper
+nuget WebSharper.Compiler
+nuget WebSharper.Owin
+nuget WebSharper.UI.Next

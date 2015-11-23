@@ -1,0 +1,44 @@
+﻿namespace SiteletFsx
+
+open System
+open System.IO
+open System.Text
+open Microsoft.FSharp.Compiler.Interactive.Shell
+open WebSharper
+open WebSharper.Sitelets
+
+module SelfHostedServer =
+
+    open global.Owin
+    open Microsoft.Owin.Hosting
+    open Microsoft.Owin.StaticFiles
+    open Microsoft.Owin.FileSystems
+    open WebSharper.Owin
+    open Common
+
+    [<EntryPoint>]
+    let Main = function
+        | [| rootDirectory; url |] ->
+
+            let value = FsiExec.evaluateFsx<CompiledSitelet> "Sitelet.fsx" "SiteletFsx.Site.main"
+
+
+            match value with
+            | FsiExec.Success sitelet -> 
+                use server = WebApp.Start(url, fun appB ->
+
+                    appB.UseStaticFiles(
+                            StaticFileOptions(FileSystem = PhysicalFileSystem(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug\Content")))
+                        .UseSitelet(
+                            @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug", 
+                            sitelet.Sitelet, 
+                            binDirectory = @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug") |> ignore)
+                
+                stdout.WriteLine("Serving {0}", url)
+                stdin.ReadLine() |> ignore
+                0
+            | _ -> eprintfn "Failed to initialise sitelet"
+                   1
+        | _ ->
+            eprintfn "Usage: SiteletFsx ROOT_DIRECTORY URL"
+            1

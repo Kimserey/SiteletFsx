@@ -1,0 +1,8 @@
+Common/bin/*
+ConsoleApp/bin/*
+ConsoleApp/Scripts/*
+packages/*
+SiteletFsx/bin/*
+SiteletFsx/obj/*
+ConsoleApp/obj/*
+Common/obj/*
