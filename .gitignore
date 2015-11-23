@@ -6,3 +6,4 @@ SiteletFsx/bin/*
 SiteletFsx/obj/*
 ConsoleApp/obj/*
 Common/obj/*
+.vs/*
