@@ -29,8 +29,8 @@ module SelfHostedServer =
                 
                     appB.UseStaticFiles(StaticFileOptions(FileSystem = PhysicalFileSystem(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug\Content"))) |> ignore
 
-                    appB.UseCustomSitelet(WebSharper.Owin.Options.Create(sitelet.Metadata), 
-                                          sitelet.Sitelet) |> ignore
+                    let options = WebSharper.Owin.Options.Create(sitelet.Metadata).WithServerRootDirectory(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug").WithDebug(true)
+                    appB.UseCustomSitelet(options, sitelet.Sitelet) |> ignore
                     
 //                    appB.UseSitelet(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug", 
 //                                    sitelet.Sitelet, 
