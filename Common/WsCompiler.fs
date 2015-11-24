@@ -20,15 +20,12 @@ module WsCompiler =
     let private compile asm =
         let localDir = Directory.GetCurrentDirectory()
         let websharperDir = Path.GetDirectoryName typeof<Sitelet<_>>.Assembly.Location
-        let websharperCollectionDir = Path.GetDirectoryName typeof<WebSharper.Collections.HashSetProxy<_>>.Assembly.Location
-
         let fsharpDir = Path.GetDirectoryName typeof<option<_>>.Assembly.Location
         
         let loadPaths =
             [
                 localDir
                 websharperDir
-                websharperCollectionDir
                 fsharpDir
             ]
         let loader =
@@ -91,7 +88,6 @@ module WsCompiler =
         let opts = { FE.Options.Default with References = refs }
         let compiler = FE.Prepare opts (eprintfn "%O")
         
-        let asm = Assembly.GetCallingAssembly()
         compiler.Compile(<@ () @>, context = asm)
         |> Option.map (fun asm -> asm, refs)
 
@@ -128,11 +124,10 @@ module WsCompiler =
     let private (+/) x y = Path.Combine(x, y)
 
     let private outputFile root (asm: FE.CompiledAssembly) =
-        let dir = root +/ "Content"
-
+        let dir = root +/ "Scripts" +/ "WebSharper"
         Directory.CreateDirectory(dir) |> ignore
-        File.WriteAllText(dir +/ "WsApp.js", asm.ReadableJavaScript)
-        File.WriteAllText(dir +/ "WsApp.min.js", asm.CompressedJavaScript)
+        File.WriteAllText(dir +/ "WebSharper.EntryPoint.js", asm.ReadableJavaScript)
+        File.WriteAllText(dir +/ "WebSharper.EntryPoint.min.js", asm.CompressedJavaScript)
 
     let compileToWs root =
         let asm = Assembly.GetCallingAssembly()

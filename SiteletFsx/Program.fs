@@ -26,15 +26,10 @@ module SelfHostedServer =
             match value with
             | FsiExec.Success sitelet -> 
                 use server = WebApp.Start(url, fun appB ->
-                
-                    appB.UseStaticFiles(StaticFileOptions(FileSystem = PhysicalFileSystem(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug\Content"))) |> ignore
-
-                    let options = WebSharper.Owin.Options.Create(sitelet.Metadata).WithServerRootDirectory(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug").WithDebug(true)
+                    let binDir = @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug"
+                    appB.UseStaticFiles(StaticFileOptions(FileSystem = PhysicalFileSystem(binDir))) |> ignore
+                    let options = WebSharper.Owin.Options.Create(sitelet.Metadata).WithServerRootDirectory(binDir).WithDebug(true)
                     appB.UseCustomSitelet(options, sitelet.Sitelet) |> ignore
-                    
-//                    appB.UseSitelet(@"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug", 
-//                                    sitelet.Sitelet, 
-//                                    binDirectory = @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug") |> ignore
                 )
                 
                 stdout.WriteLine("Serving {0}", url)

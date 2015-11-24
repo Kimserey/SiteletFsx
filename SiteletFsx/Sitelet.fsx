@@ -1,6 +1,7 @@
 ﻿namespace SiteletFsx
 
 #load "References.fsx"
+#load "SiteletPage.fsx"
 
 open WebSharper
 open WebSharper.Sitelets
@@ -19,7 +20,7 @@ module Client =
         let json = Json.Serialize "json test"
 
         div [
-            h1 [text "hello from my JS in my script sitelet"]
+            h2 [text "Hello world"]
             div [text "Write something here"]
             Doc.Input [] input
             div [Doc.TextView input.View]
@@ -32,21 +33,20 @@ module Site =
     open WebSharper.UI.Next.Client
 
     let site =
-        Sitelet.Content "test" "test"  (fun _ ->
-                Content.Page(
-                    Body = [
-                        h1 [text "hello from my script sitelet"] :> Doc
-                        client <@ Client.main () @>
-                    ],
-                    Title = "Hello"
-            ))
+        Sitelet.Content "test" "test"  (fun _ -> Content.Page(Title = "Hello", Body = [client <@ Client.main () @>]))
 
     let main =
 
         let metadata = Common.WsCompiler.compileToWs @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug"
 
+        let sitelet = 
+            Sitelet.Sum [
+                site
+                PageOneSite.site
+            ]
+
         {  Route = "test"
-           Sitelet = site
+           Sitelet = sitelet
            Metadata = metadata }
         
   
