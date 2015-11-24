@@ -43,9 +43,10 @@ module Site =
 
     let main =
 
-        Common.WsCompiler.produceScripts @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug"
+        let metadata = Common.WsCompiler.compileToWs @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug"
 
         {  Route = "test"
-           Sitelet = site }
+           Sitelet = site
+           Metadata = metadata }
         
   

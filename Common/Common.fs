@@ -6,4 +6,5 @@ open WebSharper.Sitelets
 type CompiledSitelet = {
     Route: string
     Sitelet: Sitelet<string>
+    Metadata: Core.Metadata.Info
 }

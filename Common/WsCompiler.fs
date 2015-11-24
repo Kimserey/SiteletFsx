@@ -134,7 +134,7 @@ module WsCompiler =
         File.WriteAllText(dir +/ "WsApp.js", asm.ReadableJavaScript)
         File.WriteAllText(dir +/ "WsApp.min.js", asm.CompressedJavaScript)
 
-    let produceScripts root =
+    let compileToWs root =
         let asm = Assembly.GetCallingAssembly()
 
         match compile asm with
@@ -142,3 +142,4 @@ module WsCompiler =
         | Some (asm, refs) ->
             outputFiles root refs
             outputFile root asm
+            asm.Info
