@@ -14,9 +14,6 @@ module Resources =
     type BootstrapResource() =
         inherit BaseResource("//maxcdn.bootstrapcdn.com/bootstrap/3.3.5", "css/bootstrap.min.css")
 
-    [<assembly:Require(typeof<BootstrapResource>)>]
-    do()
-
 module Server =
     
     [<Rpc>]
