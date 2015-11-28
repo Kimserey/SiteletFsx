@@ -14,6 +14,9 @@ module Resources =
     type BootstrapResource() =
         inherit BaseResource("//maxcdn.bootstrapcdn.com/bootstrap/3.3.5", "css/bootstrap.min.css")
 
+    type StyleResource() =
+        inherit BaseResource("style.css")
+
 module Server =
     
     [<Rpc>]
@@ -30,6 +33,7 @@ module Client =
     open Server
 
     [<Require(typeof<Resources.BootstrapResource>)>]
+    [<Require(typeof<Resources.StyleResource>)>]
     let main() = 
         let input = Var.Create ""
         let json = Json.Serialize "json test"

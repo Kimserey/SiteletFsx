@@ -309,6 +309,7 @@
     <None Include="SiteletPage.fsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="style.css" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
