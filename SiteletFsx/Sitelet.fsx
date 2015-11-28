@@ -17,9 +17,9 @@ module Resources =
 module Server =
     
     [<Rpc>]
-    let getUsers (id: string): Async<string> =
+    let getUserName (id: string): Async<string> =
         async { 
-            return id + " hello"
+            return "Test username"
         }
 
 [<JavaScript>]
@@ -46,7 +46,7 @@ module Client =
             
             Doc.Button "Get user rpc" [] (fun () -> 
                 async {
-                    let! user = getUsers "x"
+                    let! user = getUserName "id"
                     do Var.Set username user
                 } |> Async.Start)
             Doc.TextView username.View
