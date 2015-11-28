@@ -30,7 +30,7 @@ module FsiExec =
         try
             let fsiArgs = [| "--noninteractive"; "--nologo"; "--gui-"; "--define:HOSTED" |]
             let fsiConfig = FsiEvaluationSession.GetDefaultConfiguration()
-            use fsiSession = FsiEvaluationSession.Create(fsiConfig, fsiArgs, inStream, outStream, errStream, collectible = true)
+            use fsiSession = FsiEvaluationSession.Create(fsiConfig, fsiArgs, inStream, outStream, errStream)
 
             // Reference essential assemblies.
             fsiSession.ReferenceDlls [
