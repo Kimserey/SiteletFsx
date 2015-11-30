@@ -37,7 +37,7 @@ module Client =
 
         div [
             h2Attr [attr.``class`` "well"] [text "Hello world"]
-            div [text "Write something here"]
+            divAttr [attr.``class`` "box"] [text "Write something here"]
 
             Doc.Input [] input
             div [Doc.TextView input.View]
@@ -58,7 +58,11 @@ module Site =
     open WebSharper.UI.Next.Client
 
     let site =
-        Sitelet.Content "test" "test"  (fun _ -> Content.Page(Title = "Hello", Body = [client <@ Client.main () @>]))
+        Sitelet.Content "test" "test"  (fun _ -> 
+            Content.Page(
+                Title = "Hello", 
+                Head = [ linkAttr [attr.rel "stylesheet"; attr.``type`` "text/css"; attr.href "style.css"] [] ],
+                Body = [client <@ Client.main () @>]))
 
     let main =
 
