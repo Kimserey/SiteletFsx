@@ -41,14 +41,19 @@ module SelfHostedServer =
     let Main = function
         | [| rootDirectory; url |] ->
 
-            let compiledSitelet = FsiExec.evaluateFsx<CompiledSitelet> "Sitelet.fsx" "SiteletFsx.Site.main"
+            let compiledPages = FsiExec.evaluateFsx<SiteletPages> "Pages.fsx" "SiteletFsx.Site.siteletPages"
 
-            match compiledSitelet with
-            | FsiExec.Success sitelet -> 
+            match compiledPages with
+            | FsiExec.Success pages -> 
                 use server = WebApp.Start(url, fun appB ->
 
+                    let sitelet = 
+                        pages.Pages
+                        |> List.map (fun (route, page) -> Sitelet.Content route route  (fun _ -> page))
+                        |> Sitelet.Sum
+                        
                     appB.Use(Owin.MidFunc(fun next -> 
-                        let mw = SiteMiddleware(next, sitelet.Sitelet, sitelet.Metadata, @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug")
+                        let mw = SiteMiddleware(next, sitelet, pages.Metadata, @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug")
                         Owin.AppFunc mw.Invoke)) |> ignore
                         
                     appB.Use(fun ctx next ->

@@ -1,13 +1,12 @@
 ﻿namespace SiteletFsx
 
 #load "References.fsx"
-#load "SiteletPage.fsx"
 
 open WebSharper
 open WebSharper.Sitelets
 open System.IO
-open Common
 open WebSharper.Resources
+open Common
 
 module Resources =
     
@@ -52,28 +51,13 @@ module Client =
             Doc.TextView username.View
         ]
 
-module Site =
+module HelloPage =
     open WebSharper.UI.Next
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
-
-    let site =
-        Sitelet.Content "test" "test"  (fun _ -> 
-            Content.Page(
-                Title = "Hello", 
-                Head = [ linkAttr [attr.rel "stylesheet"; attr.``type`` "text/css"; attr.href "style.css"] [] ],
-                Body = [client <@ Client.main () @>]))
-
-    let main =
-
-        let metadata = Common.WsCompiler.compileToWs @"C:\Projects\SiteletFsx\SiteletFsx\bin\Debug"
-
-        let sitelet = 
-            Sitelet.Sum [
-                site
-                PageOneSite.site
-            ]
-
-        {  Route = "test"
-           Sitelet = sitelet
-           Metadata = metadata }
+    
+    let page: Route * PageContent =
+        "hello", Content.Page (
+                    Title = "Hello", 
+                    Head = [ linkAttr [attr.rel "stylesheet"; attr.``type`` "text/css"; attr.href "style.css"] [] ],
+                    Body = [client <@ Client.main () @>])

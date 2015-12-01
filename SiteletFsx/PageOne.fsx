@@ -4,6 +4,7 @@
 
 open WebSharper
 open WebSharper.Sitelets
+open Common
 
 [<JavaScript>]
 module PageOneClient =
@@ -16,11 +17,10 @@ module PageOneClient =
             h1 [text "This is page One"]
         ]
 
-module PageOneSite =
+module PageOnePage =
     open WebSharper.UI.Next
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
 
-    let site =
-        Sitelet.Content "one" "one" (fun ctx -> Content.Page(Title= "Page one", Body = [client <@ PageOneClient.main() @>]))
-  
+    let page: Route * PageContent =
+        "pageone", Content.Page(Title= "Page one", Body = [client <@ PageOneClient.main() @>])
