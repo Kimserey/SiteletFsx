@@ -56,8 +56,10 @@ module HelloPage =
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
     
-    let page: Route * PageContent =
-        "hello", Content.Page (
-                    Title = "Hello", 
-                    Head = [ linkAttr [attr.rel "stylesheet"; attr.``type`` "text/css"; attr.href "style.css"] [] ],
-                    Body = [client <@ Client.main () @>])
+    let page =
+
+//        "hello", Content.Page (
+//                    Title = "Hello", 
+//                    Head = [ linkAttr [attr.rel "stylesheet"; attr.``type`` "text/css"; attr.href "style.css"] [] ],
+//                    Body = [client <@ Client.main () @>])
+        "hello", client <@ Client.main () @>

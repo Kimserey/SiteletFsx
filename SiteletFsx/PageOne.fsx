@@ -22,5 +22,6 @@ module PageOnePage =
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
 
-    let page: Route * PageContent =
-        "pageone", Content.Page(Title= "Page one", Body = [client <@ PageOneClient.main() @>])
+    let page: string * Doc =
+//        "pageone", Content.Page(Title= "Page one", Body = [client <@ PageOneClient.main() @>])
+        "pageone", client <@ PageOneClient.main() @>

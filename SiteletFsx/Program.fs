@@ -8,6 +8,8 @@ open System.Collections.Generic
 open Microsoft.FSharp.Compiler.Interactive.Shell
 open WebSharper
 open WebSharper.Sitelets
+open WebSharper.UI.Next
+open WebSharper.UI.Next.Html
 
 module SelfHostedServer =
 
@@ -41,7 +43,7 @@ module SelfHostedServer =
     let Main = function
         | [| rootDirectory; url |] ->
 
-            let compiledPages = FsiExec.evaluateFsx<SiteletPages> "Pages.fsx" "SiteletFsx.Site.siteletPages"
+            let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" "SiteletFsx.Site.features"
 
             match compiledPages with
             | FsiExec.Success pages -> 
@@ -49,7 +51,7 @@ module SelfHostedServer =
 
                     let sitelet = 
                         pages.Pages
-                        |> List.map (fun (route, page) -> Sitelet.Content route route  (fun _ -> page))
+                        |> List.map (fun (route, page) -> Sitelet.Content route route  (fun _ -> Content.Page(Body = [ div [text "Some nav bar here"] :> Doc; page ])))
                         |> Sitelet.Sum
                         
                     appB.Use(Owin.MidFunc(fun next -> 

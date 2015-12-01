@@ -18,7 +18,12 @@ module Site =
         [ PageOnePage.page
           HelloPage.page ]
 
-    let siteletPages: SiteletPages = { 
+//    let siteletPages: SiteletPages = { 
+//        Pages = pages
+//        Metadata = metadata 
+//    }
+
+    let features = {
         Pages = pages
-        Metadata = metadata 
+        Metadata = metadata
     }
