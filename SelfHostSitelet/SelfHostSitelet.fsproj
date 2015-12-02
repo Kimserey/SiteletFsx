@@ -5,9 +5,9 @@
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1104307b-72ce-4295-9bca-37fdf6b0ca0d}</ProjectGuid>
-    <WebSharperProject>Site</WebSharperProject>
+    <WebSharperProject>Library</WebSharperProject>
     <!--<WebSharperBundleOutputDir>$(MSBuildThisFileDirectory)\Bundle</WebSharperBundleOutputDir>-->
-    <WebProjectOutputDir>$(MSBuildThisFileDirectory)</WebProjectOutputDir>
+    <!--<WebProjectOutputDir>$(MSBuildThisFileDirectory)</WebProjectOutputDir>-->
     <StartArguments>.. http://localhost:9000/</StartArguments>
     <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
     <NuGetPackageImportStamp>
