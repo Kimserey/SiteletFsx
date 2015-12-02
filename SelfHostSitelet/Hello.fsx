@@ -6,7 +6,7 @@ open WebSharper
 open WebSharper.Sitelets
 open System.IO
 open WebSharper.Resources
-open Common
+open SelfHostSitelet
 
 module Resources =
     

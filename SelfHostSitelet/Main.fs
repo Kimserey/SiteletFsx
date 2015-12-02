@@ -5,7 +5,12 @@ open WebSharper
 open WebSharper.Sitelets
 open WebSharper.UI.Next
 open WebSharper.UI.Next.Html
-open Common
+
+module Resources =
+    open WebSharper.Resources
+
+    type StyleResource() =
+        inherit BaseResource("style.css")
 
 module Server =
     [<Rpc>]
@@ -19,6 +24,7 @@ module Client =
     open WebSharper.UI.Next.Client
     open WebSharper.JavaScript
     
+    [<Require(typeof<Resources.StyleResource>)>]
     let main1() =
         divAttr [attr.style "background-color: blue;"] [
             Doc.Button "Click" [] (fun () -> 

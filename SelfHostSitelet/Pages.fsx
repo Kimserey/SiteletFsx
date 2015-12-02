@@ -7,7 +7,7 @@
 open WebSharper
 open WebSharper.Sitelets
 open System.IO
-open Common
+open SelfHostSitelet
 open WebSharper.Resources
 
 module Site =
@@ -17,6 +17,6 @@ module Site =
           HelloPage.page ]
 
     let features root = 
-        let metadata = Common.WsCompiler.compileToWs root
+        let metadata = WsCompiler.compileToWs root
         { Pages = pages
           Metadata = metadata }

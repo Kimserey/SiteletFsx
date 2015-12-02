@@ -4,7 +4,7 @@
 
 open WebSharper
 open WebSharper.Sitelets
-open Common
+open SelfHostSitelet
 open SelfHostSitelet
 
 [<JavaScript>]
