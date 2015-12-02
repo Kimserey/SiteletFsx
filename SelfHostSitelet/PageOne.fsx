@@ -1,4 +1,4 @@
-﻿namespace SiteletFsx
+﻿namespace Fsx
 
 #load "References.fsx"
 

@@ -35,9 +35,7 @@ module Site =
     type MainTemplate = Templating.Template<"Main.html">
 
     let sitelet httproot =
-//        let root = @"C:\Projects\SiteletFsx\SelfHostSitelet"
-
-        let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" (sprintf "SiteletFsx.Site.features \"%s\"" httproot)
+        let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" (sprintf "Fsx.Site.features \"%s\"" httproot)
         match compiledPages with
         | FsiExec.Success compiled -> 
             let sitelet =
