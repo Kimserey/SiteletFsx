@@ -1,1 +1,3 @@
-Webapp sample composed by WebSharper components coded in FSX files.
+# WebSharper Sitelet built by .fsx files
+
+WebSharper Sitelet composed by .fsx files.
