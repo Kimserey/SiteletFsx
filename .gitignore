@@ -7,3 +7,6 @@ SiteletFsx/obj/*
 ConsoleApp/obj/*
 Common/obj/*
 .vs/*
+SelfHostSitelet/Scripts/*
+SelfHostSitelet/bin/*
+SelfHostSitelet/obj/*
