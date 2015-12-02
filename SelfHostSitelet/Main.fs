@@ -7,13 +7,6 @@ open WebSharper.UI.Next
 open WebSharper.UI.Next.Html
 open Common
 
-open global.Owin
-open Microsoft.Owin.Hosting
-open Microsoft.Owin.StaticFiles
-open Microsoft.Owin.FileSystems
-open WebSharper.Owin
-
-
 module Server =
     [<Rpc>]
     let getUserName (id: string): Async<string> =
@@ -37,31 +30,20 @@ module Client =
 
 module Site =
     open WebSharper.UI.Next.Server
+    open System.Collections.Generic
 
     type MainTemplate = Templating.Template<"Main.html">
 
-    let main (appB: Owin.IAppBuilder) =
-        
+    let sitelet =
         let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" "SiteletFsx.Site.features"
         match compiledPages with
-        | FsiExec.Success pages -> 
+        | FsiExec.Success compiled -> 
             let sitelet =
-                pages.Pages
-                |> List.map (fun (route, page) -> 
-                    route, 
-                    Content.Page(
-                        MainTemplate.Doc(title = route, 
-                                         body = [ 
-                                            client <@ Client.main1() @>
-                                            page ]))
-                    )
+                compiled.Pages
+                |> List.map (fun (route, page) -> route, Content.Page(MainTemplate.Doc(title = route, body = [ client <@ Client.main1() @>; page ])))
                 |> List.map (fun (route, page) -> Sitelet.Content route route (fun _ -> page))
                 |> Sitelet.Sum
-
-            let root = @"C:\Projects\SiteletFsx\SelfHostSitelet"
-        
-            appB.UseStaticFiles(StaticFileOptions(FileSystem = PhysicalFileSystem(root)))
-                .UseCustomSitelet(Options.Create(pages.Metadata).WithDebug(true), sitelet) |> ignore
+                    
+            sitelet, compiled.Metadata, __SOURCE_DIRECTORY__
 
         | _ -> failwith "couldnt compile fsx"
-

@@ -12,7 +12,7 @@ open WebSharper.Resources
 
 module Site =
 
-    let metadata = Common.WsCompiler.compileToWs @"C:\Projects\SiteletFsx\SelfHostSitelet"
+    let metadata = Common.WsCompiler.compileToWs __SOURCE_DIRECTORY__
         
     let pages =
         [ PageOnePage.page
