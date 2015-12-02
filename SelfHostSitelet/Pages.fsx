@@ -12,13 +12,11 @@ open WebSharper.Resources
 
 module Site =
 
-    let metadata = Common.WsCompiler.compileToWs __SOURCE_DIRECTORY__
-        
     let pages =
         [ PageOnePage.page
           HelloPage.page ]
 
-    let features = {
-        Pages = pages
-        Metadata = metadata
-    }
+    let features root = 
+        let metadata = Common.WsCompiler.compileToWs root
+        { Pages = pages
+          Metadata = metadata }
