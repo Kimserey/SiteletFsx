@@ -7,6 +7,7 @@ open Microsoft.Owin.StaticFiles
 open Microsoft.Owin.FileSystems
 open WebSharper.Owin
 open SelfHostSitelet.Site
+open System.IO
 
 module OwinHost =
 
@@ -19,8 +20,11 @@ module OwinHost =
             | [| |] -> "..", "http://localhost:9000/"
             | _ -> eprintfn "Usage: SelfHostSitelet ROOT_DIRECTORY URL"; exit 1
         use server = WebApp.Start(url, fun appB ->
-            let (sitelet, meta, root) = sitelet
-            appB.UseStaticFiles(StaticFileOptions(FileSystem = PhysicalFileSystem(root))) |> ignore
+
+            let httproot = Path.Combine(__SOURCE_DIRECTORY__, "httproot")
+
+            let (sitelet, meta) = sitelet httproot
+            appB.UseStaticFiles(StaticFileOptions(FileSystem = PhysicalFileSystem(httproot))) |> ignore
             appB.UseCustomSitelet(Options.Create(meta), sitelet) |> ignore
         )
         stdout.WriteLine("Serving {0}", url)

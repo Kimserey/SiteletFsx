@@ -34,10 +34,10 @@ module Site =
 
     type MainTemplate = Templating.Template<"Main.html">
 
-    let sitelet =
-        let root = @"C:\Projects\SiteletFsx\SelfHostSitelet"
+    let sitelet httproot =
+//        let root = @"C:\Projects\SiteletFsx\SelfHostSitelet"
 
-        let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" (sprintf "SiteletFsx.Site.features \"%s\"" root)
+        let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" (sprintf "SiteletFsx.Site.features \"%s\"" httproot)
         match compiledPages with
         | FsiExec.Success compiled -> 
             let sitelet =
@@ -46,6 +46,6 @@ module Site =
                 |> List.map (fun (route, page) -> Sitelet.Content route route (fun _ -> page))
                 |> Sitelet.Sum
                     
-            sitelet, compiled.Metadata, root
+            sitelet, compiled.Metadata
 
         | _ -> failwith "couldnt compile fsx"

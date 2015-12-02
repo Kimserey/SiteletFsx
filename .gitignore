@@ -12,3 +12,4 @@ SelfHostSitelet/bin/*
 SelfHostSitelet/obj/*
 OwinHost/bin/*
 OwinHost/obj/*
+OwinHost/httproot/Scripts/*
