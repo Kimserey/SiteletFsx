@@ -40,5 +40,6 @@
 #r "WebSharper.UI.Next.Templating.dll"
 
 #r "./bin/Common.dll"
+#r "./bin/SelfHostSitelet.dll"
 
 #endif

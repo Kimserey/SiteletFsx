@@ -10,3 +10,5 @@ Common/obj/*
 SelfHostSitelet/Scripts/*
 SelfHostSitelet/bin/*
 SelfHostSitelet/obj/*
+OwinHost/bin/*
+OwinHost/obj/*

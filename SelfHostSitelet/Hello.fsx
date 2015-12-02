@@ -22,7 +22,7 @@ module Server =
         }
 
 [<JavaScript>]
-module Client =
+module Hello =
     open WebSharper.UI.Next
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
@@ -57,9 +57,4 @@ module HelloPage =
     open WebSharper.UI.Next.Client
     
     let page =
-
-//        "hello", Content.Page (
-//                    Title = "Hello", 
-//                    Head = [ linkAttr [attr.rel "stylesheet"; attr.``type`` "text/css"; attr.href "style.css"] [] ],
-//                    Body = [client <@ Client.main () @>])
-        "hello", client <@ Client.main () @>
+        "hello", client <@ Hello.main () @>

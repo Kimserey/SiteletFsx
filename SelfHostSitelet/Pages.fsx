@@ -12,16 +12,11 @@ open WebSharper.Resources
 
 module Site =
 
-    let metadata = Common.WsCompiler.compileToWs @"C:\Projects\SiteletFsx\SelfHostSitelet\bin\Debug"
+    let metadata = Common.WsCompiler.compileToWs @"C:\Projects\SiteletFsx\SelfHostSitelet"
         
     let pages =
         [ PageOnePage.page
           HelloPage.page ]
-
-//    let siteletPages: SiteletPages = { 
-//        Pages = pages
-//        Metadata = metadata 
-//    }
 
     let features = {
         Pages = pages

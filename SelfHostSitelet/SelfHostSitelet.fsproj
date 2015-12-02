@@ -29,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <Name>SelfHostSitelet</Name>
     <RootNamespace>SelfHostSitelet</RootNamespace>
     <AssemblyName>SelfHostSitelet</AssemblyName>
@@ -93,6 +93,7 @@
     <None Include="FSharp.Core.sigdata">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Main.html" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HttpMultipartParser">

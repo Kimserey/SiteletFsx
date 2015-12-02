@@ -9,6 +9,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Common", "Common\Common.fsp
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SelfHostSitelet", "SelfHostSitelet\SelfHostSitelet.fsproj", "{1104307B-72CE-4295-9BCA-37FDF6B0CA0D}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "OwinHost", "OwinHost\OwinHost.fsproj", "{EC788DAB-6450-46FA-949C-9CBBD3114C65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1104307B-72CE-4295-9BCA-37FDF6B0CA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1104307B-72CE-4295-9BCA-37FDF6B0CA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1104307B-72CE-4295-9BCA-37FDF6B0CA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC788DAB-6450-46FA-949C-9CBBD3114C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC788DAB-6450-46FA-949C-9CBBD3114C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC788DAB-6450-46FA-949C-9CBBD3114C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC788DAB-6450-46FA-949C-9CBBD3114C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
