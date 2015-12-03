@@ -9,6 +9,7 @@ open System
 open System.Collections.Generic
 open System.IO
 open System.Runtime.CompilerServices
+open Mono.Cecil
 
 module WsCompiler =
     module PC = WebSharper.PathConventions

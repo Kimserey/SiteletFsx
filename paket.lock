@@ -15,6 +15,7 @@ NUGET
       Microsoft.Owin (>= 3.0.1)
       Microsoft.Owin.FileSystems (>= 3.0.1)
       Owin (>= 1.0)
+    Mono.Cecil (0.9.6.1)
     Owin (1.0.0)
     WebSharper (3.6.2.220)
     WebSharper.Compiler (3.6.2.220)

@@ -6,6 +6,7 @@ nuget Microsoft.Owin.FileSystems
 nuget Microsoft.Owin.Host.HttpListener
 nuget Microsoft.Owin.Hosting
 nuget Microsoft.Owin.StaticFiles
+nuget Mono.Cecil
 nuget Owin
 nuget WebSharper
 nuget WebSharper.Compiler
