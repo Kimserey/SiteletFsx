@@ -4,7 +4,7 @@ open WebSharper
 open WebSharper.UI.Next
 open WebSharper.Sitelets
 open System.Reflection
-
+    
 type CompiledSitelet = {
     Route: string
     Sitelet: Sitelet<string>
