@@ -5,6 +5,7 @@
 open WebSharper
 open WebSharper.Sitelets
 open SelfHostSitelet
+open WebSharper.Resources
 
 [<JavaScript>]
 module PageOneClient =
@@ -12,16 +13,9 @@ module PageOneClient =
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
     open WebSharper.JavaScript
-
+    
     let main() = 
-        div [
-            h1 [text "This is page One"]
-            Doc.Button "Shell rpc" [] (fun () -> 
-                async {
-                    let! msg = SelfHostSitelet.Server.getUserName "from rpc" 
-                    do JS.Alert msg
-                } |> Async.Start)
-        ]
+        h1 [text "This is page One"]
 
 module PageOnePage =
     open WebSharper.UI.Next

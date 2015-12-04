@@ -1,8 +1,6 @@
 ﻿namespace Fsx
 
 #load "References.fsx"
-#load "PageOne.fsx"
-#load "Hello.fsx"
 
 open WebSharper
 open WebSharper.Sitelets
@@ -28,7 +26,8 @@ module ClientPage =
             let! msg = ServerPage.test()
             do JS.Alert msg
         } 
-
+        
+    [<Require(typeof<Resources.StyleResource>)>]
     let main() =
         div [ div [text "solas"]
               div [ Doc.Button "Test" [] (fun () -> showAlert() |> Async.Start) ] ]
@@ -42,6 +41,4 @@ module Site =
     let features root = 
         CompiledWebParts.Compile(root, 
             [ Route "", client <@ ClientPage.main() @>
-              Route "inspections", client <@ ClientPage.inspections() @> 
-              PageOnePage.page
-              HelloPage.page ])
+              Route "inspections", client <@ ClientPage.inspections() @> ])

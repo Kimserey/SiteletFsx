@@ -11,6 +11,10 @@ module Resources =
 
     type StyleResource() =
         inherit BaseResource("style.css")
+        
+    [<assembly:Require(typeof<StyleResource>)>]
+    [<assembly:System.Web.UI.WebResource("style.css", "text/css")>]
+    do()
 
 module Server =
     [<Rpc>]
