@@ -9,6 +9,14 @@ open SelfHostSitelet
 open WebSharper.UI.Next.Html
 open WebSharper.Resources
 
+module Resources =
+    
+    type BootstrapResource() =
+        inherit BaseResource("//maxcdn.bootstrapcdn.com/bootstrap/3.3.5", "css/bootstrap.min.css")
+
+    [<assembly:Require(typeof<BootstrapResource>)>]
+    do()
+
 module ServerPage =
     [<Rpc>]
     let test () =
