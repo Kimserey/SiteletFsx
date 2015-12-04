@@ -6,10 +6,8 @@ open WebSharper
 open WebSharper.Sitelets
 open System.IO
 open SelfHostSitelet
-open WebSharper.Resources
-open WebSharper.UI.Next
 open WebSharper.UI.Next.Html
-open System.Reflection
+open WebSharper.Resources
 
 module ServerPage =
     [<Rpc>]
@@ -35,14 +33,11 @@ module ClientPage =
 
     let inspections() =
         div [text "Inspections"]
-    
-module ScriptRoot =
+
+module Site =
     open WebSharper.UI.Next.Server
     
-    let pages = 
-        [ Route "", client <@ ClientPage.main() @>
-          Route "inspections", client <@ ClientPage.inspections() @> ]
-
-    let compiledWebParts httpRoot = 
-        let metadata = WsCompiler.compileAndUnpack httpRoot
-        { WebParts = pages; Metadata = metadata }
+    let features root = 
+        CompiledWebParts.Compile(root, 
+            [ Route "", client <@ ClientPage.main() @>
+              Route "inspections", client <@ ClientPage.inspections() @> ])
