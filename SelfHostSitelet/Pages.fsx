@@ -36,8 +36,10 @@ module ClientPage =
 
 module Site =
     open WebSharper.UI.Next.Server
+
+    let pages = 
+            [ Route "", client <@ ClientPage.main() @>
+              Route "inspections", client <@ ClientPage.inspections() @> ]
     
     let features root = 
-        CompiledWebParts.Compile(root, 
-            [ Route "", client <@ ClientPage.main() @>
-              Route "inspections", client <@ ClientPage.inspections() @> ])
+        CompiledWebParts.Compile(root, pages)
