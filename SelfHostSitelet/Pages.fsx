@@ -11,22 +11,21 @@ open WebSharper.UI.Next
 open WebSharper.UI.Next.Html
 open System.Reflection
 
-module Server =
+module ServerPage =
     [<Rpc>]
     let test () =
         async {
             return "solas"
         }
 
-
 [<JavaScript>]
-module Client =
+module ClientPage =
     open WebSharper.JavaScript
     open WebSharper.UI.Next.Client
     
     let showAlert() = 
         async {
-            let! msg = Server.test()
+            let! msg = ServerPage.test()
             do JS.Alert msg
         } 
 
@@ -39,17 +38,11 @@ module Client =
     
 module ScriptRoot =
     open WebSharper.UI.Next.Server
-
-    /// Compile the assembly to WebSharper and unpack its scripts, contents
-    /// and return the metadata
-    let compiledWebParts httpRoot = 
     
-//        CompiledWebParts.Compile(
-//            httpRoot, 
-//            [
-//                Route "", client <@ Client.main() @> 
-//                Route "inspections", client <@ Client.inspections() @> 
-//            ])
+    let pages = 
+        [ Route "", client <@ ClientPage.main() @>
+          Route "inspections", client <@ ClientPage.inspections() @> ]
 
+    let compiledWebParts httpRoot = 
         let metadata = WsCompiler.compileAndUnpack httpRoot
-        { WebParts = [ Route "", client <@ Client.main() @>; Route "inspections", client <@ Client.inspections() @> ]; Metadata = metadata }
+        { WebParts = pages; Metadata = metadata }

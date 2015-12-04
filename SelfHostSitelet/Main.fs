@@ -6,16 +6,6 @@ open WebSharper.Sitelets
 open WebSharper.UI.Next
 open WebSharper.UI.Next.Html
 
-module Resources =
-    open WebSharper.Resources
-
-    type StyleResource() =
-        inherit BaseResource("style.css")
-
-    [<assembly:Require(typeof<StyleResource>)>]
-    [<assembly:System.Web.UI.WebResource("style.css", "text/csss")>]
-    do()
-
 module Server =
     [<Rpc>]
     let getUserName (id: string): Async<string> =

@@ -19,10 +19,6 @@ type Features = {
 type CompiledWebParts = {
     WebParts: List<WebPart>
     Metadata: Core.Metadata.Info
-} with
-    static member Compile(httpRoot, webParts) = 
-        let asm = Assembly.GetCallingAssembly()
-        let metadata = WsCompiler.compileAndUnpack httpRoot
-        { WebParts = webParts; Metadata = metadata }
+}
 and WebPart = Route * Doc
 and Route = Route of string
