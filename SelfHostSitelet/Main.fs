@@ -24,7 +24,6 @@ module Client =
     open WebSharper.UI.Next.Client
     open WebSharper.JavaScript
     
-    [<Require(typeof<Resources.StyleResource>)>]
     let main1() =
         divAttr [attr.style "background-color: blue;"] [
             Doc.Button "Click" [] (fun () -> 
