@@ -12,6 +12,10 @@ module Resources =
     type StyleResource() =
         inherit BaseResource("style.css")
 
+    [<assembly:Require(typeof<StyleResource>)>]
+    [<assembly:System.Web.UI.WebResource("style.css", "text/csss")>]
+    do()
+
 module Server =
     [<Rpc>]
     let getUserName (id: string): Async<string> =
@@ -24,7 +28,6 @@ module Client =
     open WebSharper.UI.Next.Client
     open WebSharper.JavaScript
     
-    [<Require(typeof<Resources.StyleResource>)>]
     let main1() =
         divAttr [attr.style "background-color: blue;"] [
             Doc.Button "Click" [] (fun () -> 
@@ -41,12 +44,12 @@ module Site =
     type MainTemplate = Templating.Template<"Main.html">
 
     let sitelet httproot =
-        let compiledPages = FsiExec.evaluateFsx<Features> "Pages.fsx" (sprintf "Fsx.Site.features \"%s\"" httproot)
+        let compiledPages = FsiExec.evaluateFsx<CompiledWebParts> "Pages.fsx" (sprintf "Fsx.ScriptRoot.compiledWebParts @\"%s\"" httproot)
         match compiledPages with
         | FsiExec.Success compiled -> 
             let sitelet =
-                compiled.Pages
-                |> List.map (fun (route, page) -> route, Content.Page(MainTemplate.Doc(title = route, body = [ client <@ Client.main1() @>; page ])))
+                compiled.WebParts
+                |> List.map (fun (Route route, page) -> route, Content.Page(MainTemplate.Doc(title = route, body = [ client <@ Client.main1() @>; page ])))
                 |> List.map (fun (route, page) -> Sitelet.Content route route (fun _ -> page))
                 |> Sitelet.Sum
                     
