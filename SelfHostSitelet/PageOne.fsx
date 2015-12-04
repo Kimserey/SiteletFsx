@@ -5,7 +5,6 @@
 open WebSharper
 open WebSharper.Sitelets
 open SelfHostSitelet
-open SelfHostSitelet
 
 [<JavaScript>]
 module PageOneClient =
@@ -29,5 +28,5 @@ module PageOnePage =
     open WebSharper.UI.Next.Html
     open WebSharper.UI.Next.Client
 
-    let page: string * Doc =
-        "pageone", client <@ PageOneClient.main() @>
+    let page =
+        Route "pageone", client <@ PageOneClient.main() @>

@@ -57,4 +57,4 @@ module HelloPage =
     open WebSharper.UI.Next.Client
     
     let page =
-        "hello", client <@ Hello.main () @>
+        Route "hello", client <@ Hello.main () @>

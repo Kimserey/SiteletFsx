@@ -73,8 +73,8 @@
   </Target>
   <ItemGroup>
     <Compile Include="FsiExec.fs" />
-    <Compile Include="Common.fs" />
     <Compile Include="WsCompiler.fs" />
+    <Compile Include="Common.fs" />
     <Compile Include="Main.fs" />
     <Content Include="App.config" />
     <Content Include="packages.config" />

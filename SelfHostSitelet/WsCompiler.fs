@@ -130,9 +130,7 @@ module WsCompiler =
         File.WriteAllText(dir +/ "WebSharper.EntryPoint.js", asm.ReadableJavaScript)
         File.WriteAllText(dir +/ "WebSharper.EntryPoint.min.js", asm.CompressedJavaScript)
 
-    let compileToWs root =
-        let asm = Assembly.GetCallingAssembly()
-
+    let compileAndUnpack asm root =
         match compile asm with
         | None -> failwith "Failed to compile with WebSharper"
         | Some (asm, refs) ->
